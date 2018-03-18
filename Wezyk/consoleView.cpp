@@ -53,3 +53,12 @@ void ConsoleView::show()
 	map_draw();
 	points_draw();
 }
+
+ConsoleView::~ConsoleView()
+{
+	if(game_ != nullptr)
+	{
+		delete game_;
+		game_ = nullptr;
+	}
+}

@@ -8,6 +8,7 @@ class ConsoleView : public View
 public:
 	explicit ConsoleView(Game *game);
 	void show() override;
+	~ConsoleView();
 private:
 	void map_draw() const;
 	void points_draw() const;

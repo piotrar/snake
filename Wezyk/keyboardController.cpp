@@ -9,13 +9,13 @@ void KeyboardController::run()
 		const int interval = 300 - (game_->points_get() * 10);
 		Sleep(interval > 100 ? interval : 100);
 
-		if (GetAsyncKeyState(VK_UP))
+		if (GetAsyncKeyState(VK_UP) && game_->direction_get() != ddown)
 			game_->direction_set(dup);
-		else if (GetAsyncKeyState(VK_LEFT))
+		else if (GetAsyncKeyState(VK_LEFT) && game_->direction_get() != dright)
 			game_->direction_set(dleft);
-		else if (GetAsyncKeyState(VK_RIGHT))
+		else if (GetAsyncKeyState(VK_RIGHT) && game_->direction_get() != dleft)
 			game_->direction_set(dright);
-		else if (GetAsyncKeyState(VK_DOWN))
+		else if (GetAsyncKeyState(VK_DOWN) && game_->direction_get() != dup)
 			game_->direction_set(ddown);
 		else if (GetAsyncKeyState(VK_ESCAPE))
 			break;
@@ -23,6 +23,13 @@ void KeyboardController::run()
 		game_->tick();
 	}
 	getchar();
+	getchar();
+}
+
+KeyboardController::~KeyboardController()
+{
+	delete game_;
+	delete view_;
 }
 
 

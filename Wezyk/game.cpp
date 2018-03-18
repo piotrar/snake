@@ -26,7 +26,7 @@ void Game::tick()
   if (game_map_->is_map(snake_elements[0]))
   {
     game_state_ = STATE_END;
-	cout << "Game over!" << endl;
+		cout << "Game over!" << endl;
   }
 
   if (game_map_->is_food(snake_elements[0]))
@@ -51,5 +51,24 @@ void Game::tick()
 
 void Game::direction_set(const direction k) const
 {
-  snake_->direction_change(k);
+	snake_->direction_change(k);
+}
+
+Game::~Game()
+{
+	if (game_map_ != nullptr)
+	{
+		delete game_map_;
+		game_map_ = nullptr;
+	}
+	if (snake_ != nullptr)
+	{
+		delete snake_;
+		snake_ = nullptr;
+	}
+	if (food_ != nullptr)
+	{
+		delete food_;
+		food_ = nullptr;
+	}
 }
