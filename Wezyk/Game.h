@@ -2,24 +2,27 @@
 
 #include "Snake.h"
 #include "Map.h"
+#include "Food.h"
 
 #define STATE_GAME	1
 #define STATE_END	2
 
-class game
+class Game
 {
   public:
-    game();
-    void move();
-    void direction_set(direction k);
-	map *map_get() { return &game_map_;  }
-	snake *snake_get() { return &snake_; }
+    Game();
+    void tick();
+    void direction_set(direction k) const;
+	Map* map_get() const { return game_map_;  }
+	Snake* snake_get() const { return snake_; }
 	int state_game_get() const { return game_state_; }
+	unsigned points_get() const { return points_; }
 
   private:
-	void init();
-	int game_state_{};
-    map game_map_;
-    snake snake_;
+	  unsigned int points_{0};
+	int game_state_{STATE_GAME};
+    Map* game_map_;
+	Snake* snake_{new Snake()};
+	Food* food_{nullptr};
 };
 

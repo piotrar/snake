@@ -1,10 +1,13 @@
 #include <tchar.h>
-#include "keyboardController.h"
+#include <ctime>
+#include "KeyboardController.h"
 
 int _tmain(int argc, _TCHAR *argv[])
 {
-	keyboardController controller; 
-	controller.run();
+	srand(unsigned(time(nullptr)));
+	Controller* controller = new KeyboardController; 
+	controller->run();
+	delete controller;
     return 0;
 }
 
