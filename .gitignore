@@ -13,8 +13,6 @@
 # Build results
 [Dd]ebug/
 [Dd]ebugPublic/
-[Rr]elease/
-[Rr]eleases/
 x64/
 x86/
 bld/
@@ -259,3 +257,11 @@ paket-files/
 # Python Tools for Visual Studio (PTVS)
 __pycache__/
 *.pyc
+Wezyk/Release/Wezyk.tlog/link.write.1.tlog
+Wezyk/Release/Wezyk.tlog/link.read.1.tlog
+Wezyk/Release/Wezyk.tlog/link.command.1.tlog
+Wezyk/Release/Wezyk.tlog/Wezyk.write.1u.tlog
+Wezyk/Release/Wezyk.tlog/Wezyk.lastbuildstate
+Wezyk/Release/Wezyk.tlog/CL.write.1.tlog
+Wezyk/Release/Wezyk.tlog/CL.read.1.tlog
+Wezyk/Release/Wezyk.tlog/CL.command.1.tlog

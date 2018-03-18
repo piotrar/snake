@@ -63,19 +63,24 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="game.cpp" />
-    <ClCompile Include="keyboardController.cpp" />
-    <ClCompile Include="consoleView.cpp" />
-    <ClCompile Include="map.cpp" />
-    <ClCompile Include="snake.cpp" />
+    <ClCompile Include="Food.cpp" />
+    <ClCompile Include="Game.cpp" />
+    <ClCompile Include="KeyboardController.cpp" />
+    <ClCompile Include="ConsoleView.cpp" />
+    <ClCompile Include="Map.cpp" />
+    <ClCompile Include="Snake.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="keyboardController.h" />
+    <ClInclude Include="Controller.h" />
+    <ClInclude Include="Food.h" />
+    <ClInclude Include="KeyboardController.h" />
     <ClInclude Include="Game.h" />
-    <ClInclude Include="consoleView.h" />
+    <ClInclude Include="ConsoleView.h" />
     <ClInclude Include="Map.h" />
+    <ClInclude Include="Point.h" />
     <ClInclude Include="Snake.h" />
+    <ClInclude Include="View.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />

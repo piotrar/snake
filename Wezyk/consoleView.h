@@ -1,15 +1,18 @@
 #pragma once
 #include "Game.h"
+#include "View.h"
 
 
-class consoleView
+class ConsoleView : public View
 {
 public:
-	explicit consoleView(game *game);
-	void show() const;
+	explicit ConsoleView(Game *game);
+	void show() override;
+	~ConsoleView();
 private:
 	void map_draw() const;
-	game *game_;
+	void points_draw() const;
+	Game* game_;
 };
 
 

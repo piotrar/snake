@@ -1,12 +1,11 @@
-#include "consoleView.h"
+#include "ConsoleView.h"
 #include <Windows.h>
 
-consoleView::consoleView(game* game)
+ConsoleView::ConsoleView(Game* game) : game_(game)
 {
-	this->game_ = game;
 }
 
-void consoleView::map_draw() const
+void ConsoleView::map_draw() const
 {
 	const auto std_out = GetStdHandle(STD_OUTPUT_HANDLE);
 	COORD coords;
@@ -22,20 +21,44 @@ void consoleView::map_draw() const
 	for (auto y = 0; y < height; y++)
 	{
 		for (auto x = 0; x < width; x++)
-			cout << map->box_get(x, y);
+		{
+			const auto c = map->box_get(x, y);
+			if (c == SNAKE)
+				SetConsoleTextAttribute(std_out, 10);
+			else
+				SetConsoleTextAttribute(std_out, 15);
+			cout << c;
+			
+		}
 
 		cout << endl;
 	}
 }
 
-void consoleView::show() const
+void ConsoleView::points_draw() const
 {
-	if (game_->state_game_get() == STATE_END)
+
+	const auto map = game_->map_get();
+	const auto std_out = GetStdHandle(STD_OUTPUT_HANDLE);
+	COORD coords;
+	coords.X = 0;
+	coords.Y = map->height_get();
+	SetConsoleCursorPosition(std_out, coords);
+
+ 	cout << endl << "Points:" << game_->points_get() << endl;
+}
+
+void ConsoleView::show()
+{
+	map_draw();
+	points_draw();
+}
+
+ConsoleView::~ConsoleView()
+{
+	if(game_ != nullptr)
 	{
-		cout << "Game Over!";
-	}
-	else
-	{
-		map_draw();
+		delete game_;
+		game_ = nullptr;
 	}
 }
