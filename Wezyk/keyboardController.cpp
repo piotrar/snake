@@ -1,32 +1,35 @@
 #include <Windows.h>
-#include "keyboardController.h"
+#include "KeyboardController.h"
 
-keyboardController::keyboardController() : main_view_(&gane_)
-{  }
-
-void keyboardController::run()
+void KeyboardController::run()
 {
-	while (gane_.state_game_get() != STATE_END)
+	while (game_->state_game_get() != STATE_END)
 	{
-		main_view_.show();
-		Sleep(250);
+		view_->show();
+		const int interval = 300 - (game_->points_get() * 10);
+		Sleep(interval > 100 ? interval : 100);
 
-		if (GetAsyncKeyState(VK_UP))
-			gane_.direction_set(dup);
-		else if (GetAsyncKeyState(VK_LEFT))
-			gane_.direction_set(dleft);
-		else if (GetAsyncKeyState(VK_RIGHT))
-			gane_.direction_set(dright);
-		else if (GetAsyncKeyState(VK_DOWN))
-			gane_.direction_set(ddown);
+		if (GetAsyncKeyState(VK_UP) && game_->direction_get() != ddown)
+			game_->direction_set(dup);
+		else if (GetAsyncKeyState(VK_LEFT) && game_->direction_get() != dright)
+			game_->direction_set(dleft);
+		else if (GetAsyncKeyState(VK_RIGHT) && game_->direction_get() != dleft)
+			game_->direction_set(dright);
+		else if (GetAsyncKeyState(VK_DOWN) && game_->direction_get() != dup)
+			game_->direction_set(ddown);
 		else if (GetAsyncKeyState(VK_ESCAPE))
 			break;
 
-		gane_.move();
-
+		game_->tick();
 	}
-
 	getchar();
+	getchar();
+}
+
+KeyboardController::~KeyboardController()
+{
+	delete game_;
+	delete view_;
 }
 
 

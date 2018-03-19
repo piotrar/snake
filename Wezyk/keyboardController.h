@@ -1,17 +1,17 @@
 #pragma once
 
 #include "Game.h"
-#include "consoleView.h"
+#include "ConsoleView.h"
+#include "Controller.h"
 
-class keyboardController
+class KeyboardController : public Controller
 {
 public:
-	keyboardController();
-	void run();
-
+	void run() override;
+	~KeyboardController();
 private:
-	game gane_;
-	consoleView main_view_{}; 
+	Game* game_{new Game()};
+	View* view_{new ConsoleView(game_)}; 
 };
 
 
